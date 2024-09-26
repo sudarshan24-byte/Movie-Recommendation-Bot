@@ -6,7 +6,7 @@ from utils import movie, start, help_command, echo, unknown_command, genre
 
 def main():
     # Replace 'YOUR_TOKEN_HERE' with your actual bot token
-    updater = Updater("7559265658:AAHEik1Mxii6O-qPUpEqs7mca9IiK8-RCLQ", use_context=True)
+    updater = Updater("BOT_API_KEY", use_context=True)
 
     # Get the dispatcher to register handlers
     dp = updater.dispatcher

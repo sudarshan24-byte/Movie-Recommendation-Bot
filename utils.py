@@ -1,5 +1,6 @@
 from telegram import Update
 from telegram.ext import CallbackContext
+from model import recommend_movies
 
 # Start Command
 def start(update: Update, context: CallbackContext) -> None:
@@ -23,10 +24,13 @@ def unknown_command(update: Update, context: CallbackContext) -> None:
 def movie(update: Update, context: CallbackContext) -> None:
     # Join the arguments passed after /movie to form the movie name
     movie_name = ' '.join(context.args)
+    movies = recommend_movies(movie_name)
 
     if movie_name:  # If user provided a movie name
         # Reply with the captured movie name
-        update.message.reply_text(f'Your favorite movie is: {movie_name}')
+        movie_list = "\n".join(movies)  # Format the list with line breaks
+        reply_text = f"Movies Suggested for you:\n\n{movie_list}"
+        update.message.reply_text(reply_text)
     else:
         # If no movie name is provided
         update.message.reply_text('Please provide a movie name after /movie.')
